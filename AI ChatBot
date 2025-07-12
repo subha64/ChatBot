@@ -1,7 +1,25 @@
-echo "# ChatBot" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/subha64/ChatBot.git
-git push -u origin main
+import java.util.HashMap;
+import java.util.Map;
+
+public class Chatbot {
+    private Map<String, String> responses;
+
+    public Chatbot() {
+        responses = new HashMap<>();
+        responses.put("hello", "Hello! How can I help you today?");
+        responses.put("hi", "Hi there! What can I do for you?");
+        responses.put("bye", "Goodbye! Have a great day!");
+        responses.put("name", "I'm an AI Chatbot written in Java.");
+        // Add more canned responses as needed
+    }
+
+    public String getResponse(String input) {
+        input = input.toLowerCase().trim();
+        for (String key : responses.keySet()) {
+            if (input.contains(key)) {
+                return responses.get(key);
+            }
+        }
+        return "Sorry, I don't understand. Can you rephrase?";
+    }
+}
